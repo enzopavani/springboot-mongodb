@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.enzo.mongo.domain.User;
 import com.enzo.mongo.repositories.UserRepository;
+import com.enzo.mongo.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -17,4 +18,9 @@ public class UserService {
 	public List<User> findAll() {
 		return repo.findAll();
 	}
+	
+	public User findById(String id) {
+		return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+	}
+	
 }
