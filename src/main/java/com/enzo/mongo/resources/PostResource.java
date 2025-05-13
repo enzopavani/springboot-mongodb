@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enzo.mongo.domain.Post;
-import com.enzo.mongo.dto.UserDTO;
 import com.enzo.mongo.services.PostService;
 
 @RestController

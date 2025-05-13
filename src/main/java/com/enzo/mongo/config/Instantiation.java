@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.enzo.mongo.domain.Post;
 import com.enzo.mongo.domain.User;
 import com.enzo.mongo.dto.AuthorDTO;
+import com.enzo.mongo.dto.CommentDTO;
 import com.enzo.mongo.repositories.PostRepository;
 import com.enzo.mongo.repositories.UserRepository;
 
@@ -40,6 +41,13 @@ public class Instantiation implements CommandLineRunner{
 		
 		Post post1 = new Post(null, sdf.parse("03/05/2025"), "Lady Gaga concert", "Going to the beach in Rio de Janeiro with over 2 million people.", new AuthorDTO(maria));
 		Post post2 = new Post(null, sdf.parse("08/05/2025"), "SOAD concert", "Not even a week since the last concert, my throat is sore. ;-;", new AuthorDTO(maria));
+		
+		CommentDTO c1 = new CommentDTO("Have a nice trip!", sdf.parse("03/05/2025"), new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Hope you enjoy it!", sdf.parse("04/05/2025"), new AuthorDTO(bob));
+		CommentDTO c3 = new CommentDTO("I bet it was amazing", sdf.parse("10/05/2025"), new AuthorDTO(alex));
+		
+		post1.getComments().addAll(Arrays.asList(c1, c2));
+		post2.getComments().add(c3);
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
